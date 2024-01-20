@@ -1,0 +1,3 @@
+../Core/Src/Peripheral_Libraries/CANBusProtocol_Library.c:21:6:CAN_ClearFIFO	56	static
+../Core/Src/Peripheral_Libraries/CANBusProtocol_Library.c:70:9:CAN_ReceiveRoutine	56	static
+../Core/Src/Peripheral_Libraries/CANBusProtocol_Library.c:177:9:CAN_TransmitRoutine	72	static

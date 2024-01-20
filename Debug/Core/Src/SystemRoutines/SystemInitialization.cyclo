@@ -1,0 +1,2 @@
+../Core/Src/SystemRoutines/SystemInitialization.c:25:7:SystemActivation	21
+../Core/Src/SystemRoutines/SystemInitialization.c:286:7:InitSystemStruct	1

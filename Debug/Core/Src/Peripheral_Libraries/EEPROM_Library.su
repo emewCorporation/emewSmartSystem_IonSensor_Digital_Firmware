@@ -1,0 +1,2 @@
+../Core/Src/Peripheral_Libraries/EEPROM_Library.c:27:17:eeprom_Write	72	dynamic
+../Core/Src/Peripheral_Libraries/EEPROM_Library.c:53:17:eeprom_Read	40	static

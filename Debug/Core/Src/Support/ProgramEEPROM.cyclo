@@ -1,0 +1,3 @@
+../Core/Src/Support/ProgramEEPROM.c:18:6:ProgramEEPROM_All	1
+../Core/Src/Support/ProgramEEPROM.c:61:6:ProgramEEPROM_CAN	1
+../Core/Src/Support/ProgramEEPROM.c:87:6:ProgramEEPROM_SensorType	1

@@ -1,0 +1,2 @@
+../Core/Src/SystemRoutines/PairingRoutines.c:33:6:ControllerPairRoutine	24	static
+../Core/Src/SystemRoutines/PairingRoutines.c:105:6:ControllerPingRoutine	24	static

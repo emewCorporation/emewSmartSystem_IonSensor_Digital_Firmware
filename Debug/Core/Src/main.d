@@ -1,0 +1,110 @@
+Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h \
+ ../Core/Inc/stm32f3xx_hal_conf.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rcc.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h \
+ ../Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f3xx.h \
+ ../Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f302xc.h \
+ ../Drivers/CMSIS/Include/core_cm4.h \
+ ../Drivers/CMSIS/Include/cmsis_version.h \
+ ../Drivers/CMSIS/Include/cmsis_compiler.h \
+ ../Drivers/CMSIS/Include/cmsis_gcc.h \
+ ../Drivers/CMSIS/Include/mpu_armv7.h \
+ ../Drivers/CMSIS/Device/ST/STM32F3xx/Include/system_stm32f3xx.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rcc_ex.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_gpio.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_gpio_ex.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_exti.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma_ex.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_cortex.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_can.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_flash.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_flash_ex.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2c.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2c_ex.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr_ex.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi_ex.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart.h \
+ ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h \
+ ../Core/Inc/./SystemRoutines/CANSetup.h ../Core/Inc/./main.h \
+ ../Core/Inc/./Global_HALL.h ../Core/Inc/././main.h \
+ ../Core/Inc/./SystemRoutines/SystemInitialization.h \
+ ../Core/Inc/./StructDefinitions.h ../Core/Inc/././Global_HALL.h \
+ ../Core/Inc/./GenericLibraries/DataSerializationLibrary.h \
+ ../Core/Inc/Peripheral_Libraries/EEPROM_Library.h \
+ ../Core/Inc/./Peripheral_Libraries/FlashMemory_Library.h \
+ ../Core/Inc/Global_HALL.h \
+ ../Core/Inc/Peripheral_Libraries/MCP4726A1T_E.h \
+ ../Core/Inc/Peripheral_Libraries/MCP3421.h \
+ ../Core/Inc/./Peripheral_Libraries/CANBusProtocol_Library.h \
+ ../Core/Inc/./SystemRoutines/InformationPrintRoutines.h \
+ ../Core/Inc/./PrimaryStateMachine.h ../Core/Inc/././StructDefinitions.h \
+ ../Core/Inc/././GenericLibraries/DataSerializationLibrary.h \
+ ../Core/Inc/././SystemRoutines/PairingRoutines.h \
+ ../Core/Inc/././SystemRoutines/SensorMeasurementRoutine.h \
+ ../Core/Inc/./Support/TestingRoutine.h \
+ ../Core/Inc/./Support/ProgramEEPROM.h \
+ ../Core/Inc/./Peripheral_Libraries/EEPROM_Library.h
+../Core/Inc/main.h:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:
+../Core/Inc/stm32f3xx_hal_conf.h:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rcc.h:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_def.h:
+../Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f3xx.h:
+../Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f302xc.h:
+../Drivers/CMSIS/Include/core_cm4.h:
+../Drivers/CMSIS/Include/cmsis_version.h:
+../Drivers/CMSIS/Include/cmsis_compiler.h:
+../Drivers/CMSIS/Include/cmsis_gcc.h:
+../Drivers/CMSIS/Include/mpu_armv7.h:
+../Drivers/CMSIS/Device/ST/STM32F3xx/Include/system_stm32f3xx.h:
+../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_rcc_ex.h:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_gpio.h:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_gpio_ex.h:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_exti.h:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma.h:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_dma_ex.h:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_cortex.h:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_can.h:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_flash.h:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_flash_ex.h:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2c.h:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2c_ex.h:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr.h:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr_ex.h:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi.h:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_spi_ex.h:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart.h:
+../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_uart_ex.h:
+../Core/Inc/./SystemRoutines/CANSetup.h:
+../Core/Inc/./main.h:
+../Core/Inc/./Global_HALL.h:
+../Core/Inc/././main.h:
+../Core/Inc/./SystemRoutines/SystemInitialization.h:
+../Core/Inc/./StructDefinitions.h:
+../Core/Inc/././Global_HALL.h:
+../Core/Inc/./GenericLibraries/DataSerializationLibrary.h:
+../Core/Inc/Peripheral_Libraries/EEPROM_Library.h:
+../Core/Inc/./Peripheral_Libraries/FlashMemory_Library.h:
+../Core/Inc/Global_HALL.h:
+../Core/Inc/Peripheral_Libraries/MCP4726A1T_E.h:
+../Core/Inc/Peripheral_Libraries/MCP3421.h:
+../Core/Inc/./Peripheral_Libraries/CANBusProtocol_Library.h:
+../Core/Inc/./SystemRoutines/InformationPrintRoutines.h:
+../Core/Inc/./PrimaryStateMachine.h:
+../Core/Inc/././StructDefinitions.h:
+../Core/Inc/././GenericLibraries/DataSerializationLibrary.h:
+../Core/Inc/././SystemRoutines/PairingRoutines.h:
+../Core/Inc/././SystemRoutines/SensorMeasurementRoutine.h:
+../Core/Inc/./Support/TestingRoutine.h:
+../Core/Inc/./Support/ProgramEEPROM.h:
+../Core/Inc/./Peripheral_Libraries/EEPROM_Library.h:

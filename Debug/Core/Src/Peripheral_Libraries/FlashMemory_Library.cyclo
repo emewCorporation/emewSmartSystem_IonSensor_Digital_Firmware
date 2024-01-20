@@ -1,0 +1,9 @@
+../Core/Src/Peripheral_Libraries/FlashMemory_Library.c:40:16:Flash_ReadStatusRegister	6
+../Core/Src/Peripheral_Libraries/FlashMemory_Library.c:67:16:Flash_WriteStatusRegister	6
+../Core/Src/Peripheral_Libraries/FlashMemory_Library.c:101:16:Flash_Read	3
+../Core/Src/Peripheral_Libraries/FlashMemory_Library.c:133:16:Flash_Write	4
+../Core/Src/Peripheral_Libraries/FlashMemory_Library.c:170:16:Flash_SectorErase	3
+../Core/Src/Peripheral_Libraries/FlashMemory_Library.c:197:16:Flash_BlockErase	3
+../Core/Src/Peripheral_Libraries/FlashMemory_Library.c:225:16:Flash_BulkErase	3
+../Core/Src/Peripheral_Libraries/FlashMemory_Library.c:247:16:Flash_WREN	2
+../Core/Src/Peripheral_Libraries/FlashMemory_Library.c:262:16:Flash_WRDI	2

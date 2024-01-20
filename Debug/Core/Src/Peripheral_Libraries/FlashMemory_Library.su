@@ -1,0 +1,9 @@
+../Core/Src/Peripheral_Libraries/FlashMemory_Library.c:40:16:Flash_ReadStatusRegister	24	static
+../Core/Src/Peripheral_Libraries/FlashMemory_Library.c:67:16:Flash_WriteStatusRegister	24	static
+../Core/Src/Peripheral_Libraries/FlashMemory_Library.c:101:16:Flash_Read	32	static
+../Core/Src/Peripheral_Libraries/FlashMemory_Library.c:133:16:Flash_Write	64	dynamic
+../Core/Src/Peripheral_Libraries/FlashMemory_Library.c:170:16:Flash_SectorErase	24	static
+../Core/Src/Peripheral_Libraries/FlashMemory_Library.c:197:16:Flash_BlockErase	24	static
+../Core/Src/Peripheral_Libraries/FlashMemory_Library.c:225:16:Flash_BulkErase	8	static
+../Core/Src/Peripheral_Libraries/FlashMemory_Library.c:247:16:Flash_WREN	8	static
+../Core/Src/Peripheral_Libraries/FlashMemory_Library.c:262:16:Flash_WRDI	16	static

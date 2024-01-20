@@ -1,0 +1,6 @@
+../Core/Src/Peripheral_Libraries/MCP3421.c:25:14:MCP3421_ADC_ReadVoltage	7
+../Core/Src/Peripheral_Libraries/MCP3421.c:76:14:MCP3421_ADC_Reset	4
+../Core/Src/Peripheral_Libraries/MCP3421.c:100:14:MCP3421_ADC_Init	4
+../Core/Src/Peripheral_Libraries/MCP3421.c:125:14:MCP3421_ADC_Read_Config	2
+../Core/Src/Peripheral_Libraries/MCP3421.c:151:14:MCP3421_ADC_Write_Config	3
+../Core/Src/Peripheral_Libraries/MCP3421.c:168:14:MCP3421_ADC_Read	4
