@@ -233,6 +233,21 @@ void EXTI9_5_IRQHandler(void)
 }
 
 /**
+  * @brief This function handles EXTI line[15:10] interrupts.
+  */
+void EXTI15_10_IRQHandler(void)
+{
+  /* USER CODE BEGIN EXTI15_10_IRQn 0 */
+
+  /* USER CODE END EXTI15_10_IRQn 0 */
+  HAL_GPIO_EXTI_IRQHandler(CC1_DETECT_EXTI11_Pin);
+  HAL_GPIO_EXTI_IRQHandler(CC2_DETECT_EXTI12_Pin);
+  /* USER CODE BEGIN EXTI15_10_IRQn 1 */
+
+  /* USER CODE END EXTI15_10_IRQn 1 */
+}
+
+/**
   * @brief This function handles Timer 6 interrupt and DAC underrun interrupts.
   */
 void TIM6_DAC_IRQHandler(void)

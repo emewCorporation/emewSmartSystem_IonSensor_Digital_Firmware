@@ -37,6 +37,7 @@ typedef enum{
 
 /* Functions prototypes ---------------------------------------------*/
 dac_status_t MCP4726A1T_VoltageOut(float VoltageOutput);
+
 dac_status_t MCP4726A1T_WriteVolatileMemory(uint8_t VoltRefBits, uint8_t PowerDownBits, uint8_t GainBit, uint16_t DAC_Data);
 dac_status_t MCP4726A1T_WriteAllMemory(uint8_t VoltRefBits, uint8_t PowerDownBits, uint8_t GainBit, uint16_t DAC_Data);
 dac_status_t MCP4726A1T_WriteVolatileDACRegister(uint8_t PowerDownBits, uint16_t DAC_Data);

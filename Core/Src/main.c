@@ -41,6 +41,7 @@
 #include <Peripheral_Libraries/MCP4726A1T_E.h>
 #include <Peripheral_Libraries/MCP3421.h>
 #include "./Peripheral_Libraries/CANBusProtocol_Library.h"
+//#include <Peripheral_Libraries/STM32_ADC.h>
 
 #include "./Support/TestingRoutine.h"
 #include "./Support/ProgramEEPROM.h"
@@ -63,6 +64,8 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+ADC_HandleTypeDef hadc1;
+
 CAN_HandleTypeDef hcan;
 
 I2C_HandleTypeDef hi2c1;
@@ -78,7 +81,7 @@ UART_HandleTypeDef huart2;
 /* USER CODE BEGIN PV */
 sysinfo SysInfo;
 
-char FirmwareVersion[] = "A.1.0";
+char FirmwareVersion[] = "A.1.1";
 char DeviceMode[] = "Ion Sensor Digital";
 char PrintBuffer[COMM_SIZE];
 uint8_t VerboseMode = true;
@@ -107,6 +110,7 @@ static void MX_TIM6_Init(void);
 static void MX_TIM16_Init(void);
 static void MX_TIM17_Init(void);
 static void MX_USART2_UART_Init(void);
+static void MX_ADC1_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -151,6 +155,7 @@ int main(void)
   MX_TIM16_Init();
   MX_TIM17_Init();
   MX_USART2_UART_Init();
+  MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
 
   //Prevents user code execution on firmware update
@@ -204,7 +209,7 @@ int main(void)
   }
 
 
-  uint8_t Status;
+  //uint8_t Status;
   //uint8_t ReadBuffer[6] = {0x00};
   uint8_t ctrlbool=0;
 
@@ -240,21 +245,21 @@ int main(void)
 
 
 
-
-
-
-
-
-
-
-
-
-
 	  if(SysInfo.Button1==true){
 		  SysInfo.Button1=false;
 		  memset(PrintBuffer, '\0', COMM_SIZE); snprintf(PrintBuffer, COMM_SIZE-1, "\n\rButton 1 Pressed");
 		  DebugPrint(VerboseMode, PrintBuffer, COMM_SIZE);
 
+		  memset(PrintBuffer, '\0', COMM_SIZE); snprintf(PrintBuffer, COMM_SIZE-1, "\n\rTS Pin -> Status %u", Read_USBC_SpareTS() );
+		  DebugPrint(VerboseMode, PrintBuffer, COMM_SIZE);
+
+		  //HAL_ADCEx_Calibration_Start();
+		  float VoltageValue1;
+		  STM32_ADC_ReadVoltage(&VoltageValue1, CC1_CH);
+		  memset(PrintBuffer, '\0', COMM_SIZE); snprintf(PrintBuffer, COMM_SIZE-1, "\n\rCC%u Value -> %0.3f", CC1_CH, VoltageValue1 );
+		  DebugPrint(VerboseMode, PrintBuffer, COMM_SIZE );
+
+		  /*
 		  Status = MCP4726A1T_WriteAllMemory(VREF_BUFF,PD_NO,G_1X, 1600);
 		  if(Status != 0x2F){
 			  memset(PrintBuffer, '\0', COMM_SIZE); snprintf(PrintBuffer, COMM_SIZE-1, "\n\rDAC Write All Fail -> Status 0x%02X", Status );
@@ -263,6 +268,7 @@ int main(void)
 			  memset(PrintBuffer, '\0', COMM_SIZE); snprintf(PrintBuffer, COMM_SIZE-1, "\n\rDAC Write All Success");
 			  DebugPrint(VerboseMode, PrintBuffer, COMM_SIZE);
 		  }
+		  */
 
 	  }
 
@@ -272,11 +278,18 @@ int main(void)
 		  memset(PrintBuffer, '\0', COMM_SIZE); snprintf(PrintBuffer, COMM_SIZE-1, "\n\rButton 2 Pressed");
 		  DebugPrint(VerboseMode, PrintBuffer, COMM_SIZE);
 
+		  //HAL_ADCEx_Calibration_Start();
+		  float VoltageValue2;
+		  STM32_ADC_ReadVoltage(&VoltageValue2, CC2_CH);
+		  memset(PrintBuffer, '\0', COMM_SIZE); snprintf(PrintBuffer, COMM_SIZE-1, "\n\rCC%u Value -> %0.3f", CC2_CH, VoltageValue2 );
+		  DebugPrint(VerboseMode, PrintBuffer, COMM_SIZE );
+
+
+		  /*
 		  //Print routine enter message
 		  memset(PrintBuffer, '\0', COMM_SIZE);  snprintf(PrintBuffer, COMM_SIZE-1, "\n\n\rVoltage Measurement Routine Entered"  );
 		  DebugPrint(VerboseMode, PrintBuffer, COMM_SIZE);
 
-		  /*
 		  //Measure voltage 5 times and take the average
 		  float VoltageAverage = 0;
 		  float VoltageSample;
@@ -381,13 +394,81 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART2|RCC_PERIPHCLK_I2C1;
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART2|RCC_PERIPHCLK_I2C1
+                              |RCC_PERIPHCLK_ADC12;
   PeriphClkInit.Usart2ClockSelection = RCC_USART2CLKSOURCE_PCLK1;
+  PeriphClkInit.Adc12ClockSelection = RCC_ADC12PLLCLK_DIV1;
   PeriphClkInit.I2c1ClockSelection = RCC_I2C1CLKSOURCE_HSI;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
     Error_Handler();
   }
+}
+
+/**
+  * @brief ADC1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_ADC1_Init(void)
+{
+
+  /* USER CODE BEGIN ADC1_Init 0 */
+
+  /* USER CODE END ADC1_Init 0 */
+
+  ADC_MultiModeTypeDef multimode = {0};
+  ADC_ChannelConfTypeDef sConfig = {0};
+
+  /* USER CODE BEGIN ADC1_Init 1 */
+
+  /* USER CODE END ADC1_Init 1 */
+
+  /** Common config
+  */
+  hadc1.Instance = ADC1;
+  hadc1.Init.ClockPrescaler = ADC_CLOCK_ASYNC_DIV1;
+  hadc1.Init.Resolution = ADC_RESOLUTION_12B;
+  hadc1.Init.ScanConvMode = ADC_SCAN_DISABLE;
+  hadc1.Init.ContinuousConvMode = DISABLE;
+  hadc1.Init.DiscontinuousConvMode = DISABLE;
+  hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
+  hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+  hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+  hadc1.Init.NbrOfConversion = 1;
+  hadc1.Init.DMAContinuousRequests = DISABLE;
+  hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+  hadc1.Init.LowPowerAutoWait = DISABLE;
+  hadc1.Init.Overrun = ADC_OVR_DATA_OVERWRITTEN;
+  if (HAL_ADC_Init(&hadc1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure the ADC multi-mode
+  */
+  multimode.Mode = ADC_MODE_INDEPENDENT;
+  if (HAL_ADCEx_MultiModeConfigChannel(&hadc1, &multimode) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure Regular Channel
+  */
+  sConfig.Channel = ADC_CHANNEL_1;
+  sConfig.Rank = ADC_REGULAR_RANK_1;
+  sConfig.SingleDiff = ADC_SINGLE_ENDED;
+  sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
+  sConfig.OffsetNumber = ADC_OFFSET_NONE;
+  sConfig.Offset = 0;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN ADC1_Init 2 */
+
+  /* USER CODE END ADC1_Init 2 */
+
 }
 
 /**
@@ -672,14 +753,14 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOC, HRTBEAT_LED_Pin|SENSOR_LED_1_Pin|SENSOR_LED_2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, V_ADC_CS_Pin|FLASH_WP_Pin, GPIO_PIN_SET);
-
-  /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, INDICATION_LED_1_Pin|INDICATION_LED_2_Pin|INDICATION_LED_3_Pin|INDICATION_LED_4_Pin
                           |INDICATION_LED_5_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(FLASH_EN_GPIO_Port, FLASH_EN_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(FLASH_WP_GPIO_Port, FLASH_WP_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin : HRTBEAT_LED_Pin */
   GPIO_InitStruct.Pin = HRTBEAT_LED_Pin;
@@ -694,13 +775,6 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : V_ADC_CS_Pin */
-  GPIO_InitStruct.Pin = V_ADC_CS_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-  HAL_GPIO_Init(V_ADC_CS_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : BUTTON1_EXTI5_Pin BUTTON2_EXTI6_Pin BUTTON3_EXTI7_Pin */
   GPIO_InitStruct.Pin = BUTTON1_EXTI5_Pin|BUTTON2_EXTI6_Pin|BUTTON3_EXTI7_Pin;
@@ -724,9 +798,24 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(FLASH_WP_GPIO_Port, &GPIO_InitStruct);
 
+  /*Configure GPIO pins : CC1_DETECT_EXTI11_Pin CC2_DETECT_EXTI12_Pin */
+  GPIO_InitStruct.Pin = CC1_DETECT_EXTI11_Pin|CC2_DETECT_EXTI12_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : SPARE_TS_Pin */
+  GPIO_InitStruct.Pin = SPARE_TS_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(SPARE_TS_GPIO_Port, &GPIO_InitStruct);
+
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
+
+  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 
 /* USER CODE BEGIN MX_GPIO_Init_2 */
 /* USER CODE END MX_GPIO_Init_2 */

@@ -32,17 +32,17 @@ typedef enum{
 	ADC_ERROR_READBACK		= -4,			//Data integrity verification failed
 	ADC_ERROR_OPERATIONAL	= -5,			//Low level function failed in a higher level operation
 	ADC_ERROR_UNKNOWN		= -6			//Unknown error
-}adc_status_t;
+}mcp3421_status_t;
 
 
 /* Functions prototypes ---------------------------------------------*/
-adc_status_t MCP3421_ADC_ReadVoltage(float* ReturnValue);
-adc_status_t MCP3421_ADC_Reset(void);
-adc_status_t MCP3421_ADC_Init( uint8_t ConfigValue );
-adc_status_t MCP3421_ADC_Read_Config( uint8_t* ReadByte );
+mcp3421_status_t MCP3421_ADC_ReadVoltage(float* ReturnValue);
+mcp3421_status_t MCP3421_ADC_Reset(void);
+mcp3421_status_t MCP3421_ADC_Init( uint8_t ConfigValue );
+mcp3421_status_t MCP3421_ADC_Read_Config( uint8_t* ReadByte );
 
-adc_status_t MCP3421_ADC_Write_Config( uint8_t* WriteArray );
-adc_status_t MCP3421_ADC_Read( uint8_t* ReadArray, uint16_t ReadArraySize );
+mcp3421_status_t MCP3421_ADC_Write_Config( uint8_t* WriteArray );
+mcp3421_status_t MCP3421_ADC_Read( uint8_t* ReadArray, uint16_t ReadArraySize );
 
 #endif /* MCP3421_Library_H */
 

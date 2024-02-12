@@ -1,5 +1,5 @@
 /* Private includes ----------------------------------------------------------------------------*/
-#include "./SystemRoutines/SensorMeasurementRoutine.h"
+#include "./SystemRoutines/SensorControlRoutines.h"
 
 /* External HAL Variables Declarations ---------------------------------------------------------*/
 extern UART_HandleTypeDef UART_COMM;

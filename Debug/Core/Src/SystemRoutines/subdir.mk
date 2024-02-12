@@ -8,6 +8,7 @@ C_SRCS += \
 ../Core/Src/SystemRoutines/CANSetup.c \
 ../Core/Src/SystemRoutines/InformationPrint.c \
 ../Core/Src/SystemRoutines/PairingRoutines.c \
+../Core/Src/SystemRoutines/SensorControlRoutines.c \
 ../Core/Src/SystemRoutines/SensorMeasurementRoutine.c \
 ../Core/Src/SystemRoutines/SystemInitialization.c 
 
@@ -15,6 +16,7 @@ OBJS += \
 ./Core/Src/SystemRoutines/CANSetup.o \
 ./Core/Src/SystemRoutines/InformationPrint.o \
 ./Core/Src/SystemRoutines/PairingRoutines.o \
+./Core/Src/SystemRoutines/SensorControlRoutines.o \
 ./Core/Src/SystemRoutines/SensorMeasurementRoutine.o \
 ./Core/Src/SystemRoutines/SystemInitialization.o 
 
@@ -22,6 +24,7 @@ C_DEPS += \
 ./Core/Src/SystemRoutines/CANSetup.d \
 ./Core/Src/SystemRoutines/InformationPrint.d \
 ./Core/Src/SystemRoutines/PairingRoutines.d \
+./Core/Src/SystemRoutines/SensorControlRoutines.d \
 ./Core/Src/SystemRoutines/SensorMeasurementRoutine.d \
 ./Core/Src/SystemRoutines/SystemInitialization.d 
 
@@ -33,7 +36,7 @@ Core/Src/SystemRoutines/%.o Core/Src/SystemRoutines/%.su Core/Src/SystemRoutines
 clean: clean-Core-2f-Src-2f-SystemRoutines
 
 clean-Core-2f-Src-2f-SystemRoutines:
-	-$(RM) ./Core/Src/SystemRoutines/CANSetup.cyclo ./Core/Src/SystemRoutines/CANSetup.d ./Core/Src/SystemRoutines/CANSetup.o ./Core/Src/SystemRoutines/CANSetup.su ./Core/Src/SystemRoutines/InformationPrint.cyclo ./Core/Src/SystemRoutines/InformationPrint.d ./Core/Src/SystemRoutines/InformationPrint.o ./Core/Src/SystemRoutines/InformationPrint.su ./Core/Src/SystemRoutines/PairingRoutines.cyclo ./Core/Src/SystemRoutines/PairingRoutines.d ./Core/Src/SystemRoutines/PairingRoutines.o ./Core/Src/SystemRoutines/PairingRoutines.su ./Core/Src/SystemRoutines/SensorMeasurementRoutine.cyclo ./Core/Src/SystemRoutines/SensorMeasurementRoutine.d ./Core/Src/SystemRoutines/SensorMeasurementRoutine.o ./Core/Src/SystemRoutines/SensorMeasurementRoutine.su ./Core/Src/SystemRoutines/SystemInitialization.cyclo ./Core/Src/SystemRoutines/SystemInitialization.d ./Core/Src/SystemRoutines/SystemInitialization.o ./Core/Src/SystemRoutines/SystemInitialization.su
+	-$(RM) ./Core/Src/SystemRoutines/CANSetup.cyclo ./Core/Src/SystemRoutines/CANSetup.d ./Core/Src/SystemRoutines/CANSetup.o ./Core/Src/SystemRoutines/CANSetup.su ./Core/Src/SystemRoutines/InformationPrint.cyclo ./Core/Src/SystemRoutines/InformationPrint.d ./Core/Src/SystemRoutines/InformationPrint.o ./Core/Src/SystemRoutines/InformationPrint.su ./Core/Src/SystemRoutines/PairingRoutines.cyclo ./Core/Src/SystemRoutines/PairingRoutines.d ./Core/Src/SystemRoutines/PairingRoutines.o ./Core/Src/SystemRoutines/PairingRoutines.su ./Core/Src/SystemRoutines/SensorControlRoutines.cyclo ./Core/Src/SystemRoutines/SensorControlRoutines.d ./Core/Src/SystemRoutines/SensorControlRoutines.o ./Core/Src/SystemRoutines/SensorControlRoutines.su ./Core/Src/SystemRoutines/SensorMeasurementRoutine.cyclo ./Core/Src/SystemRoutines/SensorMeasurementRoutine.d ./Core/Src/SystemRoutines/SensorMeasurementRoutine.o ./Core/Src/SystemRoutines/SensorMeasurementRoutine.su ./Core/Src/SystemRoutines/SystemInitialization.cyclo ./Core/Src/SystemRoutines/SystemInitialization.d ./Core/Src/SystemRoutines/SystemInitialization.o ./Core/Src/SystemRoutines/SystemInitialization.su
 
 .PHONY: clean-Core-2f-Src-2f-SystemRoutines
 

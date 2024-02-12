@@ -1,0 +1,2 @@
+../Core/Src/SystemRoutines/SensorControlRoutines.c:32:6:Transimpedance_TakeMeasurement	16	static
+../Core/Src/SystemRoutines/SensorControlRoutines.c:38:6:SensorLED_ActivationControl	16	static

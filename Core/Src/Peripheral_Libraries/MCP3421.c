@@ -8,10 +8,9 @@ extern UART_HandleTypeDef UART_COMM;
 
 /* Global Static Variable Declaration ----------------------------------------------------------*/
 static HAL_StatusTypeDef hal_i2c_status;
-static adc_status_t	adc_status;
 
 /* Private global variables ---------------------------------------------------------*/
-const uint8_t ADC_DeviceADDR = 0x6B;
+static const uint8_t ADC_DeviceADDR = 0x6B;
 
 //https://www.digikey.ca/en/products/detail/microchip-technology/MCP3421A3T-E-CH/1827892
 //https://ww1.microchip.com/downloads/aemDocuments/documents/OTH/ProductDocuments/DataSheets/22003e.pdf
@@ -22,7 +21,7 @@ const uint8_t ADC_DeviceADDR = 0x6B;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-adc_status_t MCP3421_ADC_ReadVoltage(float* ReturnValue){
+mcp3421_status_t MCP3421_ADC_ReadVoltage(float* ReturnValue){
 
 	//Toggle the RDY bit to start a new conversion
 	uint8_t ConfigValue;
@@ -49,9 +48,6 @@ adc_status_t MCP3421_ADC_ReadVoltage(float* ReturnValue){
 	*ReturnValue = CalcVal;
 
 
- 	//memset(PrintBuffer, '\0', COMM_SIZE);	snprintf(PrintBuffer, COMM_SIZE-1, "\n\n\rRAW ADC Value is %0.2f", CalcVal);
-    //DebugPrint(VerboseMode, PrintBuffer, COMM_SIZE );
-
 	//Return operation success
 	return ADC_STATUS_OK;
 
@@ -73,7 +69,7 @@ adc_status_t MCP3421_ADC_ReadVoltage(float* ReturnValue){
 
 //Reset the MCP3421A3T's configuration register to its POR value and validate the values
 //This is needed because there is no way to force the chip's registers to a POR state, therefore if the system is reset, the IC will maintain its old values
-adc_status_t MCP3421_ADC_Reset(void){
+mcp3421_status_t MCP3421_ADC_Reset(void){
 
 	//Power-On-Reset value of the ADC's configuration register
 	uint8_t POR_RegValue = 0x10;
@@ -97,10 +93,7 @@ adc_status_t MCP3421_ADC_Reset(void){
 
 
 //Initiate the MCP3421A3T's configuration register and validate the values
-adc_status_t MCP3421_ADC_Init( uint8_t ConfigValue ){
-
-	//Local function variables
-	_Bool TestFlag = true;
+mcp3421_status_t MCP3421_ADC_Init( uint8_t ConfigValue ){
 
 	//Write the passed config value to the configuration register
 	if( MCP3421_ADC_Write_Config(&ConfigValue) != ADC_STATUS_OK){ return ADC_ERROR_I2C_WRITE; }
@@ -122,7 +115,7 @@ adc_status_t MCP3421_ADC_Init( uint8_t ConfigValue ){
 
 
 //Read the data in the MCP3421's configuration register (RDY bit is masked as its volatile)
-adc_status_t MCP3421_ADC_Read_Config( uint8_t* ReadByte ){
+mcp3421_status_t MCP3421_ADC_Read_Config( uint8_t* ReadByte ){
 
 	//Local function variables
 	uint8_t ReadBuffer[4] = {0x00};
@@ -148,7 +141,7 @@ adc_status_t MCP3421_ADC_Read_Config( uint8_t* ReadByte ){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //Write the passed byte to the MCP3421's configuration register
-adc_status_t MCP3421_ADC_Write_Config(uint8_t* WriteArray){
+mcp3421_status_t MCP3421_ADC_Write_Config(uint8_t* WriteArray){
 
 	//Check for invalid parameter conditions
 	if(WriteArray==NULL){ return ADC_ERROR_PARAMETER; }
@@ -165,7 +158,7 @@ adc_status_t MCP3421_ADC_Write_Config(uint8_t* WriteArray){
 
 
 //General purpose read function for the MCP3421 ADC
-adc_status_t MCP3421_ADC_Read( uint8_t* ReadArray, uint16_t ReadArraySize){
+mcp3421_status_t MCP3421_ADC_Read( uint8_t* ReadArray, uint16_t ReadArraySize){
 
 	//Check for invalid parameter conditions
 	if(ReadArray==NULL || ReadArraySize==0){ return ADC_ERROR_PARAMETER; }
