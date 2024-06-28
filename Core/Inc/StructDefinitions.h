@@ -11,13 +11,15 @@
 
 /* Struct Typedef ----------------------------------------------------------*/
 typedef struct sysinfo {
-	_Bool     Button1;		    //State of the user push button
-	_Bool     Button2;		    //State of the user push button
-	_Bool     Button3;		    //State of the user push button
-	uint16_t  SerialNumber;			//Serial number for device identification
-	uint8_t	  SensorType;			//Type of sensor being used with the sensor
-	uint16_t  CAN_Address;			//Unique sensor address for identification and CANBus filtering (11-bits value)
-	uint16_t  EEPROM_Address;		//Current address of the EEPROM	(11-bit value)
+	_Bool		USBConnection_State;	//State of the USB connection (high = connected, low = disconnected)
+	_Bool		USBConnStatus_Flag;		//Flag to check USB connection state (high = check, low = no check)
+	_Bool		Button1;		    	//State of the user push button
+	_Bool     	Button2;		   	 	//State of the user push button
+	_Bool    	Button3;		   	 	//State of the user push button
+	uint16_t	SerialNumber;			//Serial number for device identification
+	uint8_t	  	SensorType;				//Type of sensor being used with the sensor
+	uint16_t  	CAN_Address;			//Unique sensor address for identification and CANBus filtering (11-bits value)
+	uint16_t  	EEPROM_Address;			//Current address of the EEPROM	(11-bit value)
 } sysinfo;
 
 

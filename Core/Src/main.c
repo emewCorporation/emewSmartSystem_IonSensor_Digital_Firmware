@@ -41,7 +41,6 @@
 #include <Peripheral_Libraries/MCP4726A1T_E.h>
 #include <Peripheral_Libraries/MCP3421.h>
 #include "./Peripheral_Libraries/CANBusProtocol_Library.h"
-//#include <Peripheral_Libraries/STM32_ADC.h>
 
 #include "./Support/TestingRoutine.h"
 #include "./Support/ProgramEEPROM.h"
@@ -221,6 +220,27 @@ int main(void)
 		  Toggle_LED_HeartBeat();
 	  }
 
+	  //Check CC1 and CC2 voltage for cable state
+	  if( SysInfo.USBConnStatus_Flag == true ){
+		  SysInfo.USBConnStatus_Flag = false;
+		  float CC_Voltage=0;
+		  STM32_ADC_ReadVoltage(&CC_Voltage, CC1_CH);
+		  if(CC_Voltage>3.20){
+			  SysInfo.USBConnection_State=true;
+			  Set_LED_Indication2(1);
+			  break;
+		  }
+		  STM32_ADC_ReadVoltage(&CC_Voltage, CC2_CH);
+		  if(CC_Voltage>3.20){
+			  SysInfo.USBConnection_State=true;
+			  Set_LED_Indication3(1);
+			  break;
+		  }
+		  SysInfo.USBConnection_State=false;
+		  Set_LED_Indication1(0);
+	  }
+
+
 	  //Check CAN FIFO0 for an instruction on the bus
   	  if(HAL_CAN_GetRxFifoFillLevel(&CANBUS_EXT, CAN_RX_FIFO0) != 0){		//If FIFO0 has a message, retrieve it
   		  CAN_ClearFIFO(CAN_RX_FIFO1);
@@ -255,7 +275,11 @@ int main(void)
 
 		  //HAL_ADCEx_Calibration_Start();
 		  float VoltageValue1;
-		  STM32_ADC_ReadVoltage(&VoltageValue1, CC1_CH);
+		  int8_t adc_error = STM32_ADC_ReadVoltage(&VoltageValue1, CC1_CH);
+		  if( adc_error != 0 ){
+			  memset(PrintBuffer, '\0', COMM_SIZE); snprintf(PrintBuffer, COMM_SIZE-1, "\n\rCC1 Error -> %d", adc_error );
+			  DebugPrint(VerboseMode, PrintBuffer, COMM_SIZE );
+		  }
 		  memset(PrintBuffer, '\0', COMM_SIZE); snprintf(PrintBuffer, COMM_SIZE-1, "\n\rCC%u Value -> %0.3f", CC1_CH, VoltageValue1 );
 		  DebugPrint(VerboseMode, PrintBuffer, COMM_SIZE );
 

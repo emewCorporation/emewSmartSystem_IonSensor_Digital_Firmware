@@ -238,12 +238,12 @@ void EXTI9_5_IRQHandler(void)
 void EXTI15_10_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI15_10_IRQn 0 */
-
+	//for(int i=0; i<30000; i++);					//Debounce button
+	SysInfo.USBConnStatus_Flag = true;
   /* USER CODE END EXTI15_10_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(CC1_DETECT_EXTI11_Pin);
   HAL_GPIO_EXTI_IRQHandler(CC2_DETECT_EXTI12_Pin);
   /* USER CODE BEGIN EXTI15_10_IRQn 1 */
-
   /* USER CODE END EXTI15_10_IRQn 1 */
 }
 
